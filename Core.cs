@@ -10,6 +10,7 @@ namespace json2csharp
         public string Example { get; set; }
         public bool UsePascalCase { get; set; }
         public bool UseProperties { get; set; }
+        public bool EscapedDoubleQuote { get; set; }
     }
 
     public class Json2CSharpPostResponseDto

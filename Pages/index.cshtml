@@ -33,19 +33,25 @@
                           placeholder='{ "number" : 123 }'></textarea>
             </div>
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <input type="submit" id="submitButton" class="btn btn-primary">
                 </div>
-                <div class="col-lg-4 form-check">
+                <div class="col-lg-3 form-check">
                     <label class="form-check-label">
                         <input id="InputUsePascalCase" value="" class="form-check-input" type="checkbox">
                         Use PascalCase
                     </label>
                 </div>
-                <div class="col-lg-4 form-check">
+                <div class="col-lg-3 form-check">
                     <label class="form-check-label">
                         <input id="InputUseProperties" value="" class="form-check-input" type="checkbox">
                         Use properties
+                    </label>
+                </div>
+                <div class="col-lg-3 form-check">
+                    <label class="form-check-label">
+                        <input id="InputEscapedDoubleQuote" value="" class="form-check-input" type="checkbox">
+                        Unescape Double Quote
                     </label>
                 </div>
             </div>
@@ -75,7 +81,8 @@
             var posting = $.post(url, {
                 Example: $('#InputJson').val(),
                 UsePascalCase: $('#InputUsePascalCase').is(":checked"),
-                UseProperties: $('#InputUseProperties').is(":checked")
+                UseProperties: $('#InputUseProperties').is(":checked"),
+                EscapedDoubleQuote: $('#InputEscapedDoubleQuote').is(":checked")
             });
             posting.done(function (data) {
                 console.log(data);

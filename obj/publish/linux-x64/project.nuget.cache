@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Oveqel2de7Vzc9Hlv15eyw+o904olVLHhKWVgOXc9W9AooEUEGfwgND1adqNPXYmIUiojj2Msn/ZNuF2UVYusA==",
+  "dgSpecHash": "QVNshILCYVY2G9caK2o+MswcHMbumHLEayAHwdRxVTAgfWeFBbL6Q7nYOY5217Ap+P5P2JGay1eMWtgrLkHR0g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\melicaster7540\\source\\repos\\json2csharp\\json2csharp.csproj",
+  "projectFilePath": "C:\\Users\\melicaster7540\\source\\repos\\melicaster\\json2csharp\\json2csharp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\melicaster7540\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\melicaster7540\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",

@@ -8958,11 +8958,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\melicaster7540\\source\\repos\\json2csharp\\json2csharp.csproj",
+      "projectUniqueName": "C:\\Users\\melicaster7540\\source\\repos\\melicaster\\json2csharp\\json2csharp.csproj",
       "projectName": "json2csharp",
-      "projectPath": "C:\\Users\\melicaster7540\\source\\repos\\json2csharp\\json2csharp.csproj",
+      "projectPath": "C:\\Users\\melicaster7540\\source\\repos\\melicaster\\json2csharp\\json2csharp.csproj",
       "packagesPath": "C:\\Users\\melicaster7540\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\melicaster7540\\source\\repos\\json2csharp\\obj\\publish\\linux-x64\\",
+      "outputPath": "C:\\Users\\melicaster7540\\source\\repos\\melicaster\\json2csharp\\obj\\publish\\linux-x64\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"

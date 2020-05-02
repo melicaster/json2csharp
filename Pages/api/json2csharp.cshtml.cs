@@ -32,7 +32,17 @@ namespace json2csharp.Pages.api
                     Json2CSharpPostRequestDto vm = new Json2CSharpPostRequestDto();
                     vm.UsePascalCase = bool.Parse(Request.Form["UsePascalCase"]);
                     vm.UseProperties = bool.Parse(Request.Form["UseProperties"]);
-                    vm.Example = Request.Form["Example"];
+                    vm.EscapedDoubleQuote = bool.Parse(Request.Form["EscapedDoubleQuote"]);
+
+                    if (vm.EscapedDoubleQuote)
+                    {
+                        //Unescape double quote
+                        vm.Example = Request.Form["Example"].ToString().Replace("\\\"","\"");
+                    }
+                    else
+                    {
+                        vm.Example = Request.Form["Example"];
+                    }
 
                     var gen = new JsonClassGenerator();
                     gen.UsePascalCase = vm.UsePascalCase;
