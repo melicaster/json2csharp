@@ -1,0 +1,113 @@
+﻿@page
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="c#,json,converter,netcore,webapi">
+    <meta name="description" content="a .netcore based webinterface for the JSON Class Generator">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.1/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
+    <title>json2csharp</title>
+</head>
+<body>
+    <a class="github-fork-ribbon" href="https://github.com/melicaster/json2csharp/" title="Fork me on GitHub">Fork me on GitHub</a>
+    <div class="jumbotron">
+        <h1 class="display-3">json to CSharp converter</h1>
+        <p class="lead">by melicaster, based on .netcore 3.1, jquery 3.5.0 and bootstrap 4.4.1. </p>
+    </div>
+
+    <div class="container">
+        <form id="inputform" action="/api/json2csharp" method="post">
+            <div class="form-group">
+                <textarea class="form-control"
+                          id="InputJson"
+                          style="min-width: 100%;min-height:400px;"
+                          placeholder='{ "number" : 123 }'></textarea>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <input type="submit" id="submitButton" class="btn btn-primary">
+                </div>
+                <div class="col-lg-4 form-check">
+                    <label class="form-check-label">
+                        <input id="InputUsePascalCase" value="" class="form-check-input" type="checkbox">
+                        Use PascalCase
+                    </label>
+                </div>
+                <div class="col-lg-4 form-check">
+                    <label class="form-check-label">
+                        <input id="InputUseProperties" value="" class="form-check-input" type="checkbox">
+                        Use properties
+                    </label>
+                </div>
+            </div>
+        </form>
+        <div id="error" style="display:none">
+            <p>An error occured converting your json. Please check if you are using valid json.</p>
+        </div>
+        <div id="outputContainer" style="padding: 5px 0px;display:none">
+            <button class="btn btn-primary" id="copyToClipboardButton" onclick="copyToClipboard('#output')">Copy to clipboard</button>
+            <pre>            
+            <code class="csharp" id="output"></code>
+             </pre>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.5.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.1/highlight.min.js"></script>
+    <script>
+        $("#inputform").submit(function (event) {
+            event.preventDefault();
+            var $form = $(this),
+                url = $form.attr('action');
+            var posting = $.post(url, {
+                Example: $('#InputJson').val(),
+                UsePascalCase: $('#InputUsePascalCase').is(":checked"),
+                UseProperties: $('#InputUseProperties').is(":checked")
+            });
+            posting.done(function (data) {
+                console.log(data);
+                if (data.status == 0) {
+                    $("#outputContainer").show();
+                    $("#output").html(data.data);
+                    $("#error").hide();
+                    $('pre code').each(function (i, block) {
+                        hljs.highlightBlock(block);
+                    });
+                }
+                else {
+                    $("#outputContainer").hide();
+                    $("#error").show();
+                }
+            });
+
+            posting.fail(function (data) {
+                $("#outputContainer").hide();
+                $("#error").show();
+            });
+        });
+
+
+        // see https://stackoverflow.com/questions/22581345/click-button-copy-to-clipboard-using-jquery
+        function copyToClipboard(element) {
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val($(element).text()).select();
+            document.execCommand("copy");
+            $temp.remove();
+        };
+    </script>
+</body>
+</html>
